@@ -17,35 +17,105 @@
 <div th:replace="fragments/header.html :: fragment-header"></div>
 <div style="text-align: center;font-family: 'Do Hyeon', sans-serif;">
     <h3>고냥이 관리자 등록</h3>
-    <p>고냥이 서버 관리자 등록 페이지입니다.</p>
+    <p>고냥이 타운 관리자 등록 페이지입니다.</p>
     <div style="width:80%;margin-left: auto;margin-right: auto;">
-        <div class="input-group mb-3">
-            <span class="input-group-text" style="width: 20%">로그인 ID</span>
-            <input type="text" class="form-control" placeholder="로그인 ID" aria-describedby="basic-addon1" id="user_id">
+        <div class="input-group mb-3" id="div_userId">
+            <span class="input-group-text" style="width: 20%">사용자 ID</span>
+            <input type="text" class="form-control" placeholder="사용자 ID" aria-describedby="basic-addon1" id="user_id">
         </div>
-        <div class="input-group mb-3">
+        <p id="warn_id" style="display: none;color: darkred;">사용자 ID를 5글자 이상 입력해주세요.</p>
+        <div class="input-group mb-3" id="div_userName">
             <span class="input-group-text" style="width: 20%">사용자 닉네임</span>
             <input type="text" class="form-control" placeholder="사용자 닉네임" aria-describedby="basic-addon1" id="user_name">
         </div>
-        <div class="input-group mb-3">
+        <p id="warn_name" style="display: none;color: darkred;">사용자 이름 2글자 이상 입력해주세요.</p>
+        <div class="input-group mb-3" id="div_password">
             <span class="input-group-text" style="width: 20%">비밀번호</span>
             <input type="password" class="form-control" placeholder="비밀번호" aria-describedby="basic-addon1" id="user_password">
         </div>
-        <div class="input-group mb-3">
+        <p id="warn_pwd" style="display: none;color: darkred;">비밀번호는 8자 이상 입력해주세요.</p>
+        <div class="input-group mb-3" id="div_check">
             <span class="input-group-text" style="width: 20%">비밀번호 재입력</span>
             <input type="password" class="form-control" placeholder="비밀번호 재입력" aria-describedby="basic-addon1" id="user_checkpassword">
         </div>
-        <button type="button" class="btn btn-secondary" name="submitBtn">관리자 등록</button>
+        <p id="warn_check" style="display: none;color: darkred;">비밀번호가 일치하지 않습니다.</p>
+        <button type="button" class="btn btn-secondary" name="submitBtn" id="submit">관리자 등록</button>
     </div>
     <script type="text/javascript">
 
         $(document).ready(function () {
-            $("button[name='submitBtn']").click(function () {
-                let user_info = {
-                    'user_id' : $("#user_id").val(),
-                    'user_name' : $("#user_name").val(),
-                    'user_password' : $("#user_password").val(),
+            $("#user_id").change(function () {
+                let user_id = $(this).val();
+
+                if (user_id == "" || user_id.length < 5) {
+                    $("#div_userId").css("border", "1px solid red");
+                    $("#warn_id").css("display", "block")
+                } else {
+                    $("#div_userId").css("border", "none");
+                    $("#warn_id").css("display", "none")
                 }
+            })
+
+            $("#user_name").change(function () {
+                let user_name = $(this).val();
+
+                if (user_name == "" || user_name.length < 2) {
+                    $("#div_userName").css("border", "1px solid red");
+                    $("#warn_name").css("display", "block")
+                } else {
+                    $("#div_userName").css("border", "none");
+                    $("#warn_name").css("display", "none")
+                }
+            })
+
+            $("#user_password").change(function () {
+                let password = $(this).val();
+
+                if (password == "" || password.length < 8) {
+                    $("#div_password").css("border", "1px solid red");
+                    $("#warn_pwd").css("display", "block")
+                } else {
+                    $("#div_password").css("border", "none");
+                    $("#warn_pwd").css("display", "none")
+                }
+            })
+
+            $("#user_checkpassword").change(function () {
+                let chk = $(this).val();
+                let password = $("#user_password").val();
+
+                if (chk !== password) {
+                    $("#div_check").css("border", "1px solid red");
+                    $("#warn_check").css("display", "block")
+                } else {
+                    $("#div_check").css("border", "none");
+                    $("#warn_check").css("display", "none")
+                }
+            })
+
+            $("button[name='submitBtn']").click(function () {
+                let user_id = $("#user_id").val();
+                let name = $("#user_name").val();
+                let password = $("#user_password").val();
+                let chk_password = $("#user_checkpassword").val();
+
+                console.log(password);
+
+                if (chk_password!== password) {
+                    alert("비밀번호가 일치하지 않습니다.");
+                    return;
+                } else if (user_id === "" || name === "" || password === "" || chk_password === "") {
+                    alert("빈 값이 있습니다! 모두 입력해주세요!");
+                    return;
+                }
+
+                let user_info = {
+                    'user_id' : user_id,
+                    'user_name' : name,
+                    'user_password' : password,
+                }
+
+
                 confirmMessage = confirm("관리자 등록을 하시겠습니까?");
                 if(confirmMessage) {
                     // AJAX POST request
