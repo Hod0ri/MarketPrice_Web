@@ -8,14 +8,15 @@
     </select>
 
     <insert id="addNewItem">
-        INSERT INTO public."TB_ITEM"
-            (item_id, item_display, max_price, min_price, avg_price)
+        INSERT INTO public."tb_request"
+            (item_id, item_display, max_price, min_price, avg_price, req_status)
         VALUES (
                 #{item_id},
                 #{item_display},
                 #{max_price},
                 #{min_price},
-                #{avg_price}
+                #{avg_price},
+                'Requested'
                );
     </insert>
 </mapper>

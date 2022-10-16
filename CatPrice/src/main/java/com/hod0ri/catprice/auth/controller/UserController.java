@@ -13,11 +13,15 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Slf4j
 @Controller
 @RequestMapping("/auth")
 public class UserController {
+
     @Autowired
     private UserService userService;
 
@@ -36,13 +40,6 @@ public class UserController {
 
     @RequestMapping("/signup")
     public String signupPage(HttpServletRequest request) {
-//        HttpSession session = request.getSession();
-//        if (session == null) {
-//            return "auth/UserLogin";
-//        } else {
-//            //log.info(session.getAttribute("user_id").toString());
-//            return "mg/index";
-//        }
         return "auth/UserLogin";
     }
 
@@ -50,7 +47,7 @@ public class UserController {
     public void loginPage(@RequestParam String user_id, @RequestParam String password, HttpServletRequest request) throws NoSuchAlgorithmException {
         log.info("successful!");
         log.info("user_id: " + user_id + " password: " + password);
-        //HttpSession session = request.getSession();
-        //session.setAttribute("user_id", user_id);
+        HttpSession session = request.getSession();
+        session.setAttribute("user_id", user_id);
     }
 }

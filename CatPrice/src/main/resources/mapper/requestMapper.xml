@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hod0ri.catprice.admin.mapper.UserRequestMapper">
+    <select id="getAllItems" resultType="com.hod0ri.catprice.admin.vo.UserRequestVO">
+        select * from public."tb_request"
+    </select>
+</mapper>
