@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>🐱 시세를 RGo10다</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div th:replace="fragments/header.html :: fragment-header"></div>
+    <div style="font-family: 'Do Hyeon', sans-serif;">
+        <div class="input-group mb-3">
+            <span class="input-group-text">아이템 이모지</span>
+            <input type="text" class="form-control" placeholder="아이템 이모지" aria-describedby="basic-addon1" id="item_emoji">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">아이템 이름</span>
+            <input type="text" class="form-control" placeholder="아이템 이름" aria-describedby="basic-addon1" id="item_name">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">아이템 영문명</span>
+            <input type="text" class="form-control" placeholder="아이템 영문명" aria-describedby="basic-addon1" id="item_id">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">최소가</span>
+            <input type="number" step="0.1" class="form-control" placeholder="최소가" aria-describedby="basic-addon1" id="min_price">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">적정가</span>
+            <input type="number" step="0.1" class="form-control" placeholder="적정가" aria-describedby="basic-addon1" id="avg_price">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">최고가</span>
+            <input type="number" step="0.1" class="form-control" placeholder="최고가" aria-describedby="basic-addon1" id="max_price">
+        </div>
+        <div>
+            <span>아이템 추가시, 로그가 남으며 악의적으로 허위 정보를 입력할 경우 책임은 작성자에게 묻습니다.</span>
+            <button type="button" name="submitBtn" class="btn btn-primary">아이템 추가</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("button[name='submitBtn']").click(function () {
+                let itemInfo = {
+                    'item_id' : $("#item_id").val(),
+                    'item_display' : $("#item_emoji").val() + " " + $("#item_name").val(),
+                    'min_price' : Number($("#min_price").val()),
+                    'max_price' : Number($("#max_price").val()),
+                    'avg_price' : Number($("#avg_price").val()),
+                }
+                console.log(itemInfo);
+                // AJAX POST request
+                $.ajax({
+                    type : 'POST',
+                    url : "http://localhost:8080/api/new",
+                    contentType: "application/json",
+                    dataType : 'json',
+                    data : JSON.stringify(itemInfo),
+                    success : function() {
+
+                    },
+                    error : function() {
+                    },
+                    complete: function () {
+                        alert("정상적으로 추가되었습니다!");
+                        window.location = "http://localhost:8080";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
