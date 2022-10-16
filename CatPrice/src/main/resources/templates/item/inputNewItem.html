@@ -39,8 +39,8 @@
             <span class="input-group-text">최고가</span>
             <input type="number" step="0.1" class="form-control" placeholder="최고가" aria-describedby="basic-addon1" id="max_price">
         </div>
-        <div>
-            <span>아이템 추가시, 로그가 남으며 악의적으로 허위 정보를 입력할 경우 책임은 작성자에게 묻습니다.</span>
+        <div style="text-align: center">
+            <span>관리자의 검토 이후, 아이템이 추가 될 예정입니다. 정확하게 작성해주시면 감사하겠습니다!</span>
             <button type="button" name="submitBtn" class="btn btn-primary">아이템 추가</button>
         </div>
     </div>
@@ -54,24 +54,28 @@
                     'max_price' : Number($("#max_price").val()),
                     'avg_price' : Number($("#avg_price").val()),
                 }
-                console.log(itemInfo);
-                // AJAX POST request
-                $.ajax({
-                    type : 'POST',
-                    url : "http://localhost:8080/api/new",
-                    contentType: "application/json",
-                    dataType : 'json',
-                    data : JSON.stringify(itemInfo),
-                    success : function() {
+                confirmMessage = confirm("아이템을 추가하시겠습니까?");
+                if(confirmMessage) {
+                    // AJAX POST request
+                    $.ajax({
+                        type: 'POST',
+                        url: "http://localhost:8080/api/new",
+                        contentType: "application/json",
+                        dataType: 'json',
+                        data: JSON.stringify(itemInfo),
+                        success: function () {
 
-                    },
-                    error : function() {
-                    },
-                    complete: function () {
-                        alert("정상적으로 추가되었습니다!");
-                        window.location = "http://localhost:8080";
-                    }
-                });
+                        },
+                        error: function () {
+                        },
+                        complete: function () {
+                            alert("정상적으로 추가되었습니다!");
+                            window.location = "http://localhost:8080";
+                        }
+                    });
+                } else {
+
+                }
             });
         });
     </script>
