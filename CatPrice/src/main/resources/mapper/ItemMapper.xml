@@ -4,11 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hod0ri.catprice.item.mapper.ItemMapper">
     <select id="getAllItems" resultType="com.hod0ri.catprice.item.vo.ItemVO">
-        select * from item
+        select * from public."TB_ITEM"
     </select>
 
     <insert id="addNewItem">
-        INSERT INTO public.item
+        INSERT INTO public."TB_ITEM"
             (item_id, item_display, max_price, min_price, avg_price)
         VALUES (
                 #{item_id},
