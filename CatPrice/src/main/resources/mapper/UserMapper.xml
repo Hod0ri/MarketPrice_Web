@@ -12,4 +12,13 @@
                    #{user_password}
                );
     </insert>
+
+    <select id="findId" resultType="boolean">
+        select exists (select * from public."TB_USER" where user_id=#{user_id})
+    </select>
+
+    <select id="getpassword" resultType="string">
+        SELECT user_password
+        FROM public."TB_USER" where user_id=#{user_id};
+    </select>
 </mapper>

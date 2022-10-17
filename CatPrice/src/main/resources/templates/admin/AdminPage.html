@@ -43,11 +43,37 @@
         <td th:text="${item.max_price}"></td>
         <td th:text="${item.avg_price}"></td>
         <td th:text="${item.min_price}"></td>
-        <td th:name="${item_id}"><button type="button" class="btn btn-success">승인</button></td>
-        <td th:name="${id}"><button type="button" class="btn btn-danger">반려</button></td>
+        <td><button type="button" class="btn btn-success" th:id="${item.item_id}" th:name="${item.id}">승인</button></td>
+        <td><button type="button" class="btn btn-danger" th:id="${item.id}">반려</button></td>
     </tr>
     </tbody>
 </table>
+<script type="text/javascript">
+    $(".btn-danger").click(function() {
+        let req_id = this.getAttribute('id');
+        confirmMessage = confirm("정정/추가 요청을 반려하시겠습니까?");
+        if(confirmMessage) {
+            // AJAX POST request
+            $.ajax({
+                type: 'PUT',
+                url: "http://localhost:8080/api/req?id=" + req_id,
+                contentType: "application/json",
+                dataType: 'json',
+                success: function () {
+
+                },
+                error: function () {
+                },
+                complete: function () {
+                    alert("요청이 반려되었습니다!");
+                    window.location = "http://localhost:8080/management";
+                }
+            });
+        } else {
+
+        }
+    })
+</script>
 <div th:replace="fragments/footer.html :: fragment-footer"></div>
 </body>
 </html>

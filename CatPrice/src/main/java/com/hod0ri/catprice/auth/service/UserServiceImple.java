@@ -13,4 +13,14 @@ public class UserServiceImple implements UserService{
     public void register(UserVO user) {
         mapper.register(user);
     }
+
+    @Override
+    public boolean findId(String userId) {
+        return mapper.findId(userId);
+    }
+
+    @Override
+    public String getpassword(String userId) {
+        return mapper.getpassword(userId);
+    }
 }

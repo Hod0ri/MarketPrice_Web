@@ -10,4 +10,8 @@ import java.util.List;
 @Mapper
 public interface UserRequestMapper {
     List<UserRequestVO> getAllItems();
+
+    void denyRequest(Integer id);
+
+    void confirmRequest(Integer id);
 }

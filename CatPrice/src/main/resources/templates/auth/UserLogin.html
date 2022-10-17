@@ -19,15 +19,16 @@
   <h3>고냥이 관리자 로그인</h3>
   <p>고냥이 서버 관리자 로그인 페이지입니다.</p>
   <div style="width:80%;margin-left: auto;margin-right: auto;">
-    <div class="input-group mb-3">
+    <div class="input-group mb-3" id="div_id">
       <span class="input-group-text" style="width: 20%">로그인 ID</span>
       <input type="text" class="form-control" placeholder="로그인 ID" aria-describedby="basic-addon1" id="user_id">
     </div>
     <div class="input-group mb-3">
-      <span class="input-group-text" style="width: 20%">비밀번호</span>
+      <span class="input-group-text" style="width: 20%" id="div_passwd">비밀번호</span>
       <input type="password" class="form-control" placeholder="비밀번호" aria-describedby="basic-addon1" id="user_password">
     </div>
-    <button type="button" class="btn btn-secondary" name="submitBtn">관리자 등록</button>
+    <p style="color: darkred" id="loginStatus"></p>
+    <button type="button" class="btn btn-secondary" name="submitBtn">관리자 로그인</button>
   </div>
   <script type="text/javascript">
   </script>
@@ -35,6 +36,31 @@
 <script type="text/javascript">
 
   $(document).ready(function () {
+
+    $("#user_id").change(function () {
+      let user_id = $(this).val();
+
+      if (user_id == "" || user_id.length < 5) {
+        $("#div_id").css("border", "1px solid red");
+        $("#warn_id").css("display", "block")
+      } else {
+        $("#div_id").css("border", "none");
+        $("#warn_id").css("display", "none")
+      }
+    })
+
+    $("#user_passwd").change(function () {
+      let password = $(this).val();
+
+      if (password === "" || password.length < 8) {
+        $("#div_password").css("border", "1px solid red");
+        $("#warn_pwd").css("display", "block")
+      } else {
+        $("#div_password").css("border", "none");
+        $("#warn_pwd").css("display", "none")
+      }
+    })
+
     $("button[name='submitBtn']").click(function () {
         let user_id = $("#user_id").val();
         let user_password =  $("#user_password").val();
@@ -42,16 +68,25 @@
         // AJAX GET request
         $.ajax({
           type: 'GET',
-          url: "http://localhost:8080/auth/login?user_id=" + user_id + "&password=" + user_password,
+          url: "http://localhost:8080/authapi/login?user_id=" + user_id + "&password=" + user_password,
           contentType: "application/json",
-          dataType: 'json',
-          success: function () {
+          dataType: 'text',
+          success: function (data) {
 
           },
           error: function () {
           },
-          complete: function () {
-            window.location = "http://localhost:8080";
+          complete: function (data) {
+            let result = data['responseText'];
+
+            if(result === 'cannotfindid') {
+              $("#loginStatus").text("아이디를 찾을 수 없습니다.")
+            } else if(result === 'authexception') {
+              $("#loginStatus").text("계정 정보가 일치하지 않습니다.")
+            } else if(result === 'successful') {
+              window.location = "http://localhost:8080"
+            }
+
           }
         });
     });

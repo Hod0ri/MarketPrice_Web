@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface UserRequestService {
     List<UserRequestVO> getAllItems();
+
+    void denyRequest(Integer id);
+
+    void confirmRequest(Integer id);
 }

@@ -6,4 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper {
     void register(UserVO user);
+
+    boolean findId(String userId);
+
+    String getpassword(String userId);
 }

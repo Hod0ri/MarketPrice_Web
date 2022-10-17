@@ -4,6 +4,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hod0ri.catprice.admin.mapper.UserRequestMapper">
     <select id="getAllItems" resultType="com.hod0ri.catprice.admin.vo.UserRequestVO">
-        select * from public."tb_request"
+        select * from public."tb_request" where req_status='Requested'
     </select>
+
+    <update id="denyRequest">
+        UPDATE public.tb_request
+        SET req_status='Deny'
+        WHERE id=${id};
+    </update>
+
+    <update id="confirmRequest">
+        UPDATE public.tb_request
+        SET req_status='Confirm'
+        WHERE id=${id};
+    </update>
+
+    <insert id="uploadData">
+        INSERT INTO public."TB_ITEM"
+            (item_id, item_display, max_price, avg_price, min_price)
+        VALUES
+            (${item_id}, ${item_display}, ${max_price}, ${avg_price}, ${min_price})
+            ON CONFLICT(item_id)
+        DO UPDATE SET item_display=${item_display}, max_price=${max_price}, min_price=${min_price}, avg_price=${avg_price}
+    </insert>
 </mapper>

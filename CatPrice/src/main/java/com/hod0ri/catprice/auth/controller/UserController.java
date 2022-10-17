@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,10 +45,25 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public void loginPage(@RequestParam String user_id, @RequestParam String password, HttpServletRequest request) throws NoSuchAlgorithmException {
-        log.info("successful!");
-        log.info("user_id: " + user_id + " password: " + password);
-        HttpSession session = request.getSession();
-        session.setAttribute("user_id", user_id);
+    public String loginPage(@RequestParam String user_id, @RequestParam String password, HttpServletRequest request, Model model) throws NoSuchAlgorithmException {
+        SHA256 sha256 = new SHA256();
+        String cryptogram = sha256.encrypt(password);
+
+        if(userService.findId(user_id)) {
+            String realPassword = userService.getpassword(user_id);
+            if(cryptogram.equals(realPassword)) {
+                log.info("로그인 성공");
+                return "mg/index";
+            } else {
+                log.info("로그인 실패");
+                model.addAttribute("status", "Authorization failed");
+                return "auth/UserLogin";
+            }
+        } else {
+            log.info("아이디 없음");
+            return "no id";
+        }
+//        HttpSession session = request.getSession();
+//        session.setAttribute("user_id", user_id);
     }
 }

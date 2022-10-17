@@ -18,4 +18,14 @@ public class UserRequestServiceImpl implements UserRequestService {
     public List<UserRequestVO> getAllItems() {
         return mapper.getAllItems();
     }
+
+    @Override
+    public void denyRequest(Integer id) {
+        mapper.denyRequest(id);
+    }
+
+    @Override
+    public void confirmRequest(Integer id) {
+        mapper.confirmRequest(id);
+    }
 }
