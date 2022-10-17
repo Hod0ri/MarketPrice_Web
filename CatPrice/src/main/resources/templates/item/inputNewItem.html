@@ -14,7 +14,11 @@
 
 <body>
     <div th:replace="fragments/header.html :: fragment-header"></div>
-    <div style="font-family: 'Do Hyeon', sans-serif;">
+    <div style="font-family: 'Do Hyeon', sans-serif;width: 80%;margin-right: auto;margin-left: auto;margin-top: 2%;text-align: center">
+        <h3>아이템 추가</h3>
+        <p>시세표에 없는 아이템을 추가하는 페이지입니다.</p>
+        <p>아이템 영문명을 모르는 경우, 이 링크로 들어가서 확인해주시기 바랍니다!</p>
+        <p style="color: darkred">관리자 계정으로 추가를 하는 경우, 검토 없이 바로 시세테이블에 올라갑니다. 주의바랍니다!</p>
         <div class="input-group mb-3">
             <span class="input-group-text">아이템 이모지</span>
             <input type="text" class="form-control" placeholder="아이템 이모지" aria-describedby="basic-addon1" id="item_emoji">

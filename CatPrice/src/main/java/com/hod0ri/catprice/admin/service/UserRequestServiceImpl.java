@@ -28,4 +28,14 @@ public class UserRequestServiceImpl implements UserRequestService {
     public void confirmRequest(Integer id) {
         mapper.confirmRequest(id);
     }
+
+    @Override
+    public void uploadData(ItemVO item) {
+        mapper.uploadData(item);
+    }
+
+    @Override
+    public UserRequestVO getUserRequest(Integer id) {
+        return mapper.getUserRequest(id);
+    }
 }

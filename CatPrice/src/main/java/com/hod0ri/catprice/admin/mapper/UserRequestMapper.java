@@ -14,4 +14,8 @@ public interface UserRequestMapper {
     void denyRequest(Integer id);
 
     void confirmRequest(Integer id);
+
+    void uploadData(ItemVO item);
+
+    UserRequestVO getUserRequest(Integer id);
 }

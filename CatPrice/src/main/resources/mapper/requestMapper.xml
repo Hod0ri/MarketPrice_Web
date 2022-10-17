@@ -23,8 +23,12 @@
         INSERT INTO public."TB_ITEM"
             (item_id, item_display, max_price, avg_price, min_price)
         VALUES
-            (${item_id}, ${item_display}, ${max_price}, ${avg_price}, ${min_price})
+            ('${item_id}', '${item_display}', ${max_price}, ${avg_price}, ${min_price})
             ON CONFLICT(item_id)
-        DO UPDATE SET item_display=${item_display}, max_price=${max_price}, min_price=${min_price}, avg_price=${avg_price}
+        DO UPDATE SET item_display='${item_display}', max_price=${max_price}, min_price=${min_price}, avg_price=${avg_price}
     </insert>
+
+    <select id="getUserRequest" resultType="com.hod0ri.catprice.admin.vo.UserRequestVO">
+    SELECT * FROM public."tb_request" where id=${id}
+    </select>
 </mapper>
