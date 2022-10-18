@@ -34,11 +34,11 @@ public class APIController {
 
             ItemVO item = ItemVO.builder()
                             .item_id(data.getItem_id())
-                                    .item_display(data.getItem_display())
-                                            .max_price(data.getMax_price())
-                                                    .min_price(data.getMin_price())
-                                                            .avg_price(data.getAvg_price())
-                                                                    .build();
+                            .item_display(data.getItem_display())
+                            .max_price(data.getMax_price())
+                            .min_price(data.getMin_price())
+                            .avg_price(data.getAvg_price())
+                            .build();
             userRequestService.confirmRequest(id);
             userRequestService.uploadData(item);
         }

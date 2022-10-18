@@ -15,4 +15,6 @@ public interface UserRequestService {
     void uploadData(ItemVO item);
 
     UserRequestVO getUserRequest(Integer id);
+
+    List<UserRequestVO> getRequestByName(String name);
 }

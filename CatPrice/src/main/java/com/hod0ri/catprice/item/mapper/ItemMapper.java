@@ -10,4 +10,6 @@ public interface ItemMapper {
     List<ItemVO> getAllItems();
 
     void addNewItem(ItemVO item);
+
+    List<ItemVO> getItemByName(String name);
 }

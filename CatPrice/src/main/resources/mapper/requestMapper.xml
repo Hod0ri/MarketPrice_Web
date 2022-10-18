@@ -31,4 +31,8 @@
     <select id="getUserRequest" resultType="com.hod0ri.catprice.admin.vo.UserRequestVO">
     SELECT * FROM public."tb_request" where id=${id}
     </select>
+
+    <select id="getRequestByName" resultType="com.hod0ri.catprice.admin.vo.UserRequestVO">
+        SELECT * FROM public."tb_request" where item_display LIKE '%${item_display}%' and req_status='Confirm'
+    </select>
 </mapper>

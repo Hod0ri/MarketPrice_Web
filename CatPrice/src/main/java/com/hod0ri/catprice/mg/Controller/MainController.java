@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -16,10 +17,16 @@ public class MainController {
     ItemService itemService;
 
     @RequestMapping("")
-    public String mainpage(Model model) {
-        List<ItemVO> itemList = itemService.getAllItems();
-        model.addAttribute("itemList", itemList);
-        return "mg/index";
+    public String mainpage(Model model, @RequestParam(required = false) String name) {
+        if(name == null) {
+            List<ItemVO> itemList = itemService.getAllItems();
+            model.addAttribute("itemList", itemList);
+            return "mg/index";
+        } else {
+            List<ItemVO> itemList = itemService.getItemByName(name);
+            model.addAttribute("itemList", itemList);
+            return "mg/index";
+        }
     }
 
     @RequestMapping("/new")

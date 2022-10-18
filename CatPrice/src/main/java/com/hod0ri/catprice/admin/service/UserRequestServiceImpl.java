@@ -38,4 +38,9 @@ public class UserRequestServiceImpl implements UserRequestService {
     public UserRequestVO getUserRequest(Integer id) {
         return mapper.getUserRequest(id);
     }
+
+    @Override
+    public List<UserRequestVO> getRequestByName(String name) {
+        return mapper.getRequestByName(name);
+    }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,13 +27,19 @@ public class AdminController {
     UserRequestService service;
 
     @RequestMapping("")
-    public String index(HttpServletRequest request, Model model) throws Exception {
+    public String index(HttpServletRequest request, Model model, @RequestParam(required = false) String name) throws Exception {
         HttpSession session = request.getSession();
         log.info((String) session.getAttribute("user_id"));
         if(adminList.contains((String) session.getAttribute("user_id"))) {
+            if(name == null) {
                 List<UserRequestVO> itemList = service.getAllItems();
                 model.addAttribute("itemList", itemList);
                 return "admin/AdminPage";
+            } else {
+                List<UserRequestVO> itemList = service.getRequestByName(name);
+                model.addAttribute("itemList", itemList);
+                return "admin/AdminPage";
+            }
         } else {
             return "mg/error/AuthException";
         }

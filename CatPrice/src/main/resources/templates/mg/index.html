@@ -14,10 +14,13 @@
 
 <body>
     <div th:replace="fragments/header.html :: fragment-header"></div>
-    <div style="align-content: center;font-family: 'Do Hyeon', sans-serif;">
-        <div class="input-group mb-3">
+    <div style="align-content: center;font-family: 'Do Hyeon', sans-serif; width: 80%;margin-left: auto;margin-right: auto;margin-top: 1%;">
+        <div class="input-group mb-3" >
             <span class="input-group-text" id="basic-addon1">아이템 이름</span>
-            <input type="text" class="form-control" placeholder="Item Name" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" placeholder="Item Name" aria-describedby="basic-addon1" id="searchInput" onkeyup="enterkey()">
+            <div style="width: auto;float: right;padding-left: 1%;padding-right: 1%">
+                <button type="button" class="btn btn-success" name="insertNew">아이템 추가하기!</button>
+            </div>
         </div>
         <table class="table" style="text-align: center">
             <thead>
@@ -37,16 +40,6 @@
             </tr>
             </tbody>
         </table>
-        <div style="text-align: center">
-            <span>혹시 시장가격에 올라오지 않은 아이템이 있나요??</span>
-            <button type="button" class="btn btn-success" name="insertNew">아이템 추가하기!</button>
-            <p>시세가 다른 아이템이 있다면, 클릭해서 수정해보세요!</p>
-        </div>
-
-        <div style="text-align: center">
-            <span>관리자이신가요?</span>
-            <button type="button" class="btn btn-primary" name="admin">관리자 인증하기!</button>
-        </div>
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -55,11 +48,16 @@
             });
         });
 
-        $(document).ready(function () {
-            $("button[name='admin']").click(function () {
-                window.location = "http://localhost:8080/management";
-            });
-        });
+        function enterkey() {
+            if (window.event.keyCode === 13) {
+                let userInput = $("#searchInput").val();
+                if (userInput === "") {
+
+                } else {
+                    window.location = "http://localhost:8080?name=" + userInput
+                }
+            }
+        }
     </script>
     <div th:replace="fragments/footer.html :: fragment-footer"></div>
 </body>

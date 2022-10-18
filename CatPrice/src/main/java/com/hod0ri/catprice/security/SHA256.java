@@ -15,6 +15,6 @@ public class SHA256 {
     public String BytotoHex(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes) {sb.append(String.format("%02x", b));}
-         return sb.toString();
+        return sb.toString();
     }
 }

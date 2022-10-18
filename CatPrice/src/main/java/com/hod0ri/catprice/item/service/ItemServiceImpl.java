@@ -22,4 +22,9 @@ public class ItemServiceImpl implements ItemService{
     public void addNewItem(ItemVO item) {
         mapper.addNewItem(item);
     }
+
+    @Override
+    public List<ItemVO> getItemByName(String name) {
+        return mapper.getItemByName(name);
+    }
 }

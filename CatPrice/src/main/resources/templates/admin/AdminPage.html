@@ -20,7 +20,7 @@
 </div>
 <div class="input-group mb-3" style="font-family: 'Do Hyeon', sans-serif;">
     <span class="input-group-text" id="basic-addon1">아이템 이름</span>
-    <input type="text" class="form-control" placeholder="Item Name" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" placeholder="Item Name" aria-describedby="basic-addon1" id="searchInput" onkeyup="enterkey()">
 </div>
 <div style="font-family: 'Do Hyeon', sans-serif;text-align: center">
     <p>갱신 요청 및 추가 요청을 확인하고 승인 및 반려를 해주시기 바랍니다.</p>
@@ -98,6 +98,17 @@
 
         }
     })
+
+    function enterkey() {
+        if (window.event.keyCode === 13) {
+            let userInput = $("#searchInput").val();
+            if (userInput === "") {
+
+            } else {
+                window.location = "http://localhost:8080/management?name=" + userInput
+            }
+        }
+    }
 </script>
 <div th:replace="fragments/footer.html :: fragment-footer"></div>
 </body>

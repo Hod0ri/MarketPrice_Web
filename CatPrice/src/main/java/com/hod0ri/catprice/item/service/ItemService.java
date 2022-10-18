@@ -8,4 +8,6 @@ public interface ItemService {
     List<ItemVO> getAllItems();
 
     void addNewItem(ItemVO item);
+
+    List<ItemVO> getItemByName(String name);
 }
