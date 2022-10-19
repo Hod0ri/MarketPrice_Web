@@ -31,7 +31,7 @@ public class UserController {
         return "auth/UserRegister";
     }
 
-    @PostMapping("/registration")
+    @PostMapping("registration")
     public void registration(@RequestBody UserVO user) throws NoSuchAlgorithmException {
         SHA256 sha256 = new SHA256();
         user.setUser_password(sha256.encrypt(user.getUser_password()));
