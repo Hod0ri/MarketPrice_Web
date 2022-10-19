@@ -18,15 +18,18 @@
 <div style="font-family: 'Do Hyeon', sans-serif;padding: 1%">
     <h3>고냥이 시세 모니터링 플랫폼 :: 관리자 페이지</h3>
 </div>
-<div class="input-group mb-3" style="font-family: 'Do Hyeon', sans-serif;">
+<div class="input-group mb-3" style="font-family: 'Do Hyeon', sans-serif; width: 80%;margin-right: auto;margin-left: auto">
     <span class="input-group-text" id="basic-addon1">아이템 이름</span>
     <input type="text" class="form-control" placeholder="Item Name" aria-describedby="basic-addon1" id="searchInput" onkeyup="enterkey()">
+    <div style="width: auto;float: right;padding-left: 1%;padding-right: 1%">
+        <button type="button" class="btn btn-warning" style="float: right" id="logout">로그아웃</button>
+    </div>
 </div>
 <div style="font-family: 'Do Hyeon', sans-serif;text-align: center">
     <p>갱신 요청 및 추가 요청을 확인하고 승인 및 반려를 해주시기 바랍니다.</p>
     <p>승인과 반려에 대해 로그를 기록하고 있습니다. 잘 살펴보고 처리 부탁드립니다!</p>
 </div>
-<table class="table" style="text-align: center;font-family: 'Do Hyeon', sans-serif;">
+<table class="table" style="text-align: center;font-family: 'Do Hyeon', sans-serif; width: 80%;margin-right: auto;margin-left: auto">
     <thead>
     <tr>
         <th scope="col">아이템 이름</th>
@@ -49,6 +52,31 @@
     </tbody>
 </table>
 <script type="text/javascript">
+
+    const address = "http://money.catmc.kr"
+
+    $("#logout").click(function() {
+        $.ajax({
+            type: 'GET',
+            url: address + "/authapi/logout",
+            contentType: "application/json",
+            dataType: 'text',
+            success: function (data) {
+
+            },
+            error: function () {
+            },
+            complete: function (data) {
+                let result = data['responseText'];
+                if(result === 'successful') {
+                    alert("로그아웃 되었습니다!");
+                    window.location = address
+                }
+
+            }
+        });
+    })
+
     $(".btn-danger").click(function() {
         let req_id = this.getAttribute('id');
         confirmMessage = confirm("정정/추가 요청을 반려하시겠습니까?");
@@ -56,7 +84,7 @@
             // AJAX POST request
             $.ajax({
                 type: 'PUT',
-                url: "http://localhost:8080/api/req?id=" + req_id + 'status=deny',
+                url: address + "/api/req?id=" + req_id + '&status=deny',
                 contentType: "application/json",
                 dataType: 'json',
                 success: function () {
@@ -66,7 +94,7 @@
                 },
                 complete: function () {
                     alert("요청이 반려되었습니다!");
-                    window.location = "http://localhost:8080/management";
+                    window.location = "/management";
                 }
             });
         } else {
@@ -81,7 +109,7 @@
             // AJAX POST request
             $.ajax({
                 type: 'PUT',
-                url: "http://localhost:8080/api/req?id=" + req_id + '&status=confirm',
+                url: address + "/api/req?id=" + req_id + '&status=confirm',
                 contentType: "application/json",
                 dataType: 'json',
                 success: function () {
@@ -91,7 +119,7 @@
                 },
                 complete: function () {
                     alert("요청이 승인되었습니다!");
-                    window.location = "http://localhost:8080/management";
+                    window.location = "/management";
                 }
             });
         } else {
@@ -105,7 +133,7 @@
             if (userInput === "") {
 
             } else {
-                window.location = "http://localhost:8080/management?name=" + userInput
+                window.location = address + "/management?name=" + userInput
             }
         }
     }

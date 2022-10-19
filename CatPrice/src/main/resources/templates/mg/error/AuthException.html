@@ -19,7 +19,13 @@
     <h2>관리자 인증이 되지 않았습니다.</h2>
     <p>관리자 로그인을 해주시거나, 관리자 등록을 해주시기 바랍니다.</p>
     <p>그 이외로 안되시는 경우 문의 주시기 바랍니다.</p>
+    <button type="button" class="btn btn-light" id="adminlogin">관리자 로그인하러 가기</button>
 </div>
+<script type="text/javascript">
+    $("#adminlogin").click(function() {
+        window.location = "http://money.catmc.kr/auth/signup"
+    })
+</script>
 <div th:replace="fragments/footer.html :: fragment-footer"></div>
 </body>
 </html>

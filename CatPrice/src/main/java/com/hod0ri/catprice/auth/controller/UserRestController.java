@@ -5,10 +5,7 @@ import com.hod0ri.catprice.security.SHA256;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -32,8 +29,10 @@ public class UserRestController {
             if(cryptogram.equals(realPassword)) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user_id", user_id);
+                log.info(user_id + " 계정으로 세션이 생성되었습니다! -> 로그인");
                 return "successful";
             } else {
+                log.info(user_id + " 계정으로 로그인 시도가 있었으나 실패했습니다! -> 로그인 실패");
                 return "authexception";
             }
         } else {
@@ -41,5 +40,15 @@ public class UserRestController {
             return "cannotfindid";
         }
 
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String user_id = (String) session.getAttribute("user_id");
+        log.info(user_id + " 계정의 세션이 해제되었습니다! -> 로그아웃");
+        session.removeAttribute("user_id");
+        session.invalidate();
+        return "successful";
     }
 }

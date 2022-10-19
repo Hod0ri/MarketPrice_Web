@@ -27,4 +27,14 @@ public class ItemServiceImpl implements ItemService{
     public List<ItemVO> getItemByName(String name) {
         return mapper.getItemByName(name);
     }
+
+    @Override
+    public ItemVO getItemInfoByName(String name) {
+        return mapper.getItemInfoByName(name);
+    }
+
+    @Override
+    public void deleteItem(String name) {
+        mapper.deleteItem(name);
+    }
 }

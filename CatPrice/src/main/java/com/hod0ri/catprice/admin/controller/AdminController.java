@@ -2,6 +2,8 @@ package com.hod0ri.catprice.admin.controller;
 
 import com.hod0ri.catprice.admin.service.UserRequestService;
 import com.hod0ri.catprice.admin.vo.UserRequestVO;
+import com.hod0ri.catprice.auth.service.UserService;
+import com.hod0ri.catprice.auth.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +31,7 @@ public class AdminController {
     @RequestMapping("")
     public String index(HttpServletRequest request, Model model, @RequestParam(required = false) String name) throws Exception {
         HttpSession session = request.getSession();
-        log.info((String) session.getAttribute("user_id"));
+
         if(adminList.contains((String) session.getAttribute("user_id"))) {
             if(name == null) {
                 List<UserRequestVO> itemList = service.getAllItems();

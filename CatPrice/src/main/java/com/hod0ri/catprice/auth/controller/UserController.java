@@ -35,7 +35,7 @@ public class UserController {
     public void registration(@RequestBody UserVO user) throws NoSuchAlgorithmException {
         SHA256 sha256 = new SHA256();
         user.setUser_password(sha256.encrypt(user.getUser_password()));
-
+        user.setUser_status("common");
         userService.register(user);
     }
 
@@ -44,26 +44,4 @@ public class UserController {
         return "auth/UserLogin";
     }
 
-    @GetMapping("/login")
-    public String loginPage(@RequestParam String user_id, @RequestParam String password, HttpServletRequest request, Model model) throws NoSuchAlgorithmException {
-        SHA256 sha256 = new SHA256();
-        String cryptogram = sha256.encrypt(password);
-
-        if(userService.findId(user_id)) {
-            String realPassword = userService.getpassword(user_id);
-            if(cryptogram.equals(realPassword)) {
-                log.info("로그인 성공");
-                return "mg/index";
-            } else {
-                log.info("로그인 실패");
-                model.addAttribute("status", "Authorization failed");
-                return "auth/UserLogin";
-            }
-        } else {
-            log.info("아이디 없음");
-            return "no id";
-        }
-//        HttpSession session = request.getSession();
-//        session.setAttribute("user_id", user_id);
-    }
 }

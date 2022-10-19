@@ -5,6 +5,8 @@ import com.hod0ri.catprice.auth.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImple implements UserService{
     @Autowired
@@ -22,5 +24,15 @@ public class UserServiceImple implements UserService{
     @Override
     public String getpassword(String userId) {
         return mapper.getpassword(userId);
+    }
+
+    @Override
+    public List<UserVO> getAllAdmin() {
+        return mapper.getAllAdmin();
+    }
+
+    @Override
+    public List<UserVO> getAllUser() {
+        return mapper.getAllUser();
     }
 }

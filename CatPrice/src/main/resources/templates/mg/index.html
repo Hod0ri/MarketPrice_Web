@@ -19,7 +19,7 @@
             <span class="input-group-text" id="basic-addon1">아이템 이름</span>
             <input type="text" class="form-control" placeholder="Item Name" aria-describedby="basic-addon1" id="searchInput" onkeyup="enterkey()">
             <div style="width: auto;float: right;padding-left: 1%;padding-right: 1%">
-                <button type="button" class="btn btn-success" name="insertNew">아이템 추가하기!</button>
+                <button type="button" class="btn btn-success" name="insertNew" th:onclick="|location.href='@{/new}'|">아이템 추가하기!</button>
             </div>
         </div>
         <table class="table" style="text-align: center">
@@ -32,7 +32,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="item : ${itemList}">
+            <tr th:each="item : ${itemList}" th:id="${item.item_id}" class="itemTable" th:onclick="|location.href='@{/modify/{itemId}(itemId=${item.item_id})}'|">
                 <td th:text="${item.item_display}"></td>
                 <td th:text="${item.max_price}"></td>
                 <td th:text="${item.avg_price}"></td>
@@ -41,20 +41,14 @@
             </tbody>
         </table>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("button[name='insertNew']").click(function () {
-                window.location = "http://localhost:8080/new";
-            });
-        });
-
+    <script th:inline="javascript">
         function enterkey() {
             if (window.event.keyCode === 13) {
                 let userInput = $("#searchInput").val();
                 if (userInput === "") {
 
                 } else {
-                    window.location = "http://localhost:8080?name=" + userInput
+                    window.location = "?name=" + userInput
                 }
             }
         }

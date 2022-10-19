@@ -17,7 +17,18 @@
     <div style="font-family: 'Do Hyeon', sans-serif;width: 80%;margin-right: auto;margin-left: auto;margin-top: 2%;text-align: center">
         <h3>아이템 추가</h3>
         <p>시세표에 없는 아이템을 추가하는 페이지입니다.</p>
-        <p>아이템 영문명을 모르는 경우, 이 링크로 들어가서 확인해주시기 바랍니다!</p>
+        <p>아이템 영문명은 그 아이템의 고유한 ID값이므로 신중하게 적어주시기 바랍니다.</p>
+        <p>모든 영문명은 띄어쓰기 없이 작성 부탁드립니다. 아래 예시를 참고해주세요!</p>
+        <div class="alert alert-light" role="alert">
+            금 블록 => gold_block <br />
+            수선 인첸트북 => enchanted_book_mending_1<br />
+            블레이즈 막대 => blaze_rod
+        </div>
+        <p>가격은 1개당 가격이 원칙이나, 다수인 경우, 아이템 이름에 적어주세요! (영문명에는 개수를 적는 경우는 아래와 같이 적어주세요.)</p>
+        <div class="alert alert-light" role="alert">
+            구운 돼지고기 32개 => cooked_porkchop_32n<br />
+            흙 2세트 => dirt_128n
+        </div>
         <p style="color: darkred">관리자 계정으로 추가를 하는 경우, 검토 없이 바로 시세테이블에 올라갑니다. 주의바랍니다!</p>
         <div class="input-group mb-3">
             <span class="input-group-text">아이템 이모지</span>
@@ -48,9 +59,29 @@
             <button type="button" name="submitBtn" class="btn btn-primary">아이템 추가</button>
         </div>
     </div>
+
     <script type="text/javascript">
+
+        const address = "http://money.catmc.kr"
+
         $(document).ready(function () {
             $("button[name='submitBtn']").click(function () {
+
+                let min = Number($("#min_price").val());
+                let max = Number($("#max_price").val());
+                let avg = Number($("#avg_price").val());
+
+                if(min > max) {
+                    alert("최소 가격이 최대 가격보다 큽니다!")
+                    return;
+                } else if(avg > max) {
+                    alert("적정가격이 최대 가격보다 큽니다!")
+                    return;
+                } else if(avg < min) {
+                    alert("적정 가격이 최소 가격보다 작습니다!")
+                    return;
+                }
+
                 let itemInfo = {
                     'item_id' : $("#item_id").val(),
                     'item_display' : $("#item_emoji").val() + " " + $("#item_name").val(),
@@ -63,7 +94,7 @@
                     // AJAX POST request
                     $.ajax({
                         type: 'POST',
-                        url: "http://localhost:8080/api/new",
+                        url: address + "/api/new",
                         contentType: "application/json",
                         dataType: 'json',
                         data: JSON.stringify(itemInfo),
@@ -74,7 +105,7 @@
                         },
                         complete: function () {
                             alert("정상적으로 추가되었습니다!");
-                            window.location = "http://localhost:8080";
+                            window.location = address;
                         }
                     });
                 } else {
@@ -83,5 +114,8 @@
             });
         });
     </script>
+
+    <div th:replace="fragments/footer.html :: fragment-footer"></div>
 </body>
+
 </html>

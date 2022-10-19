@@ -16,7 +16,7 @@
     <div th:fragment="fragment-header">
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid" style="font-family: 'Do Hyeon', sans-serif;">
-                <a class="navbar-brand" href="http://localhost:8080" style="font-family: 'Do Hyeon', sans-serif;">
+                <a class="navbar-brand" href="/" style="font-family: 'Do Hyeon', sans-serif;">
                     🐱 시세를 RGo10다
                 </a>
                 <button type="button" class="btn btn-primary" id="admin" style="float: right;size: 18px">관리자 화면</button>
@@ -24,7 +24,7 @@
         </nav>
         <script type="text/javascript">
             $("#admin").click(function () {
-                window.location = "http://localhost:8080/management";
+                window.location = "/management";
             });
 
         </script>

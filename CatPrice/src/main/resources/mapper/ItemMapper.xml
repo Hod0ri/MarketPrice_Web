@@ -23,4 +23,12 @@
     <select id="getItemByName" resultType="com.hod0ri.catprice.item.vo.ItemVO">
         SELECT * FROM public."TB_ITEM" where item_display LIKE '%${item_display}%'
     </select>
+
+    <select id="getItemInfoByName" resultType="com.hod0ri.catprice.item.vo.ItemVO">
+        SELECT * FROM public."TB_ITEM" where item_id = '${name}'
+    </select>
+
+    <delete id="deleteItem">
+        delete from public."TB_ITEM" where item_id = #{name}
+    </delete>
 </mapper>

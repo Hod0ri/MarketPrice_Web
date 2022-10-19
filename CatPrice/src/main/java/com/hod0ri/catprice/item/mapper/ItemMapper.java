@@ -12,4 +12,8 @@ public interface ItemMapper {
     void addNewItem(ItemVO item);
 
     List<ItemVO> getItemByName(String name);
+
+    ItemVO getItemInfoByName(String name);
+
+    void deleteItem(String name);
 }
