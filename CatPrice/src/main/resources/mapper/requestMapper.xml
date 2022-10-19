@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hod0ri.catprice.admin.mapper.UserRequestMapper">
+    <select id="getAllItems" resultType="com.hod0ri.catprice.admin.vo.UserRequestVO">
+        select * from public."tb_request" where req_status='Requested'
+    </select>
+
+    <update id="denyRequest">
+        UPDATE public.tb_request
+        SET req_status='Deny'
+        WHERE id=${id};
+    </update>
+
+    <update id="confirmRequest">
+        UPDATE public.tb_request
+        SET req_status='Confirm'
+        WHERE id=${id};
+    </update>
+
+    <insert id="uploadData">
+        INSERT INTO public."TB_ITEM"
+            (item_id, item_display, max_price, avg_price, min_price)
+        VALUES
+            ('${item_id}', '${item_display}', ${max_price}, ${avg_price}, ${min_price})
+            ON CONFLICT(item_id)
+        DO UPDATE SET item_display='${item_display}', max_price=${max_price}, min_price=${min_price}, avg_price=${avg_price}
+    </insert>
+
+    <select id="getUserRequest" resultType="com.hod0ri.catprice.admin.vo.UserRequestVO">
+    SELECT * FROM public."tb_request" where id=${id}
+    </select>
+
+    <select id="getRequestByName" resultType="com.hod0ri.catprice.admin.vo.UserRequestVO">
+        SELECT * FROM public."tb_request" where item_display LIKE '%${item_display}%' and req_status='Confirm'
+    </select>
+</mapper>

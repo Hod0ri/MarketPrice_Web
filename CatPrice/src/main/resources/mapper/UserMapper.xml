@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hod0ri.catprice.auth.mapper.UserMapper">
+    <insert id="register">
+        INSERT INTO public."TB_USER"
+            (user_id, user_name, user_password, user_status)
+        VALUES (
+                   #{user_id},
+                   #{user_name},
+                   #{user_password},
+                   #{user_status}
+               );
+    </insert>
+
+    <select id="findId" resultType="boolean">
+        select exists (select * from public."TB_USER" where user_id=#{user_id})
+    </select>
+
+    <select id="getpassword" resultType="string">
+        SELECT user_password
+        FROM public."TB_USER" where user_id=#{user_id};
+    </select>
+
+    <select id="getAllUser" resultType="com.hod0ri.catprice.auth.vo.UserVO">
+        select * from public."TB_USER";
+    </select>
+
+    <select id="getAllAdmin" resultType="com.hod0ri.catprice.auth.vo.UserVO">
+        select * from public."TB_USER" where user_status = 'admin';
+    </select>
+</mapper>
