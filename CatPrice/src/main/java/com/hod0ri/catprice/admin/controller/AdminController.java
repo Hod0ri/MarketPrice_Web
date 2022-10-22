@@ -6,10 +6,13 @@ import com.hod0ri.catprice.auth.service.UserService;
 import com.hod0ri.catprice.auth.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +33,10 @@ public class AdminController {
 
     @RequestMapping("")
     public String index(HttpServletRequest request, Model model, @RequestParam(required = false) String name) throws Exception {
+
+        // REST TEST
+        RestTemplate resttemplate = new RestTemplate();
+
         HttpSession session = request.getSession();
 
         if(adminList.contains((String) session.getAttribute("user_id"))) {

@@ -891,3 +891,266 @@ INFO  22-10-19 17:52:28[http-nio-8080-exec-2] [HikariDataSource:110] - HikariPoo
 INFO  22-10-19 17:52:28[http-nio-8080-exec-2] [HikariDataSource:123] - HikariPool-1 - Start completed.
 INFO  22-10-19 18:43:11[SpringApplicationShutdownHook] [HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
 INFO  22-10-19 18:43:11[SpringApplicationShutdownHook] [HikariDataSource:352] - HikariPool-1 - Shutdown completed.
+INFO  22-10-22 21:52:07[restartedMain] [CatPriceApplication:55] - Starting CatPriceApplication using Java 17.0.4.1 on mintdt with PID 8044 (E:\Development\TestMarket\MarketPrice_Web\CatPrice\build\classes\java\main started by mintw in E:\Development\TestMarket\MarketPrice_Web\CatPrice)
+INFO  22-10-22 21:52:07[restartedMain] [CatPriceApplication:634] - No active profile set, falling back to 1 default profile: "default"
+INFO  22-10-22 21:52:08[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  22-10-22 21:52:08[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  22-10-22 21:52:09[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 80 (http)
+INFO  22-10-22 21:52:09[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-80"]
+INFO  22-10-22 21:52:09[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  22-10-22 21:52:09[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+INFO  22-10-22 21:52:09[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  22-10-22 21:52:09[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 984 ms
+INFO  22-10-22 21:52:09[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  22-10-22 21:52:09[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-80"]
+INFO  22-10-22 21:52:09[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 80 (http) with context path ''
+INFO  22-10-22 21:52:09[restartedMain] [CatPriceApplication:61] - Started CatPriceApplication in 1.95 seconds (JVM running for 2.528)
+INFO  22-10-22 21:52:18[http-nio-80-exec-2] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  22-10-22 21:52:18[http-nio-80-exec-2] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  22-10-22 21:52:18[http-nio-80-exec-2] [DispatcherServlet:547] - Completed initialization in 0 ms
+INFO  22-10-22 21:52:18[http-nio-80-exec-2] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  22-10-22 21:52:18[http-nio-80-exec-2] [HikariDataSource:123] - HikariPool-1 - Start completed.
+ERROR 22-10-22 21:53:54[http-nio-80-exec-8] [[dispatcherServlet]:175] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: org.postgresql.util.PSQLException: 오류: 중복된 키 값이 "TB_USER_pkey" 고유 제약 조건을 위반함
+  Detail: (user_id)=(cats_love) 키가 이미 있습니다.
+### The error may exist in file [E:\Development\TestMarket\MarketPrice_Web\CatPrice\build\resources\main\mapper\UserMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: INSERT INTO public."TB_USER"             (user_id, user_name, user_password, user_status)         VALUES (                    ?,                    ?,                    ?,                    ?                );
+### Cause: org.postgresql.util.PSQLException: 오류: 중복된 키 값이 "TB_USER_pkey" 고유 제약 조건을 위반함
+  Detail: (user_id)=(cats_love) 키가 이미 있습니다.
+; 오류: 중복된 키 값이 "TB_USER_pkey" 고유 제약 조건을 위반함
+  Detail: (user_id)=(cats_love) 키가 이미 있습니다.; nested exception is org.postgresql.util.PSQLException: 오류: 중복된 키 값이 "TB_USER_pkey" 고유 제약 조건을 위반함
+  Detail: (user_id)=(cats_love) 키가 이미 있습니다.] with root cause
+org.postgresql.util.PSQLException: 오류: 중복된 키 값이 "TB_USER_pkey" 고유 제약 조건을 위반함
+  Detail: (user_id)=(cats_love) 키가 이미 있습니다.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2675)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2365)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:355)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:490)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:408)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:167)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:156)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:194)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:181)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	at jdk.proxy2/jdk.proxy2.$Proxy62.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:62)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:145)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
+	at jdk.proxy3/jdk.proxy3.$Proxy68.register(Unknown Source)
+	at com.hod0ri.catprice.auth.service.UserServiceImple.register(UserServiceImple.java:16)
+	at com.hod0ri.catprice.auth.controller.UserController.registration(UserController.java:39)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+INFO  22-10-22 21:54:05[http-nio-80-exec-1] [UserRestController:32] - cats_love 계정으로 세션이 생성되었습니다! -> 로그인
+INFO  22-10-22 22:07:08[SpringApplicationShutdownHook] [HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
+INFO  22-10-22 22:07:08[SpringApplicationShutdownHook] [HikariDataSource:352] - HikariPool-1 - Shutdown completed.
+INFO  22-10-22 22:07:11[restartedMain] [CatPriceApplication:55] - Starting CatPriceApplication using Java 17.0.4.1 on mintdt with PID 14996 (E:\Development\TestMarket\MarketPrice_Web\CatPrice\build\classes\java\main started by mintw in E:\Development\TestMarket\MarketPrice_Web\CatPrice)
+INFO  22-10-22 22:07:11[restartedMain] [CatPriceApplication:634] - No active profile set, falling back to 1 default profile: "default"
+INFO  22-10-22 22:07:12[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  22-10-22 22:07:12[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  22-10-22 22:07:12[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 80 (http)
+INFO  22-10-22 22:07:12[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-80"]
+INFO  22-10-22 22:07:12[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  22-10-22 22:07:12[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+INFO  22-10-22 22:07:12[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  22-10-22 22:07:12[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 749 ms
+INFO  22-10-22 22:07:13[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  22-10-22 22:07:13[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-80"]
+INFO  22-10-22 22:07:13[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 80 (http) with context path ''
+INFO  22-10-22 22:07:13[restartedMain] [CatPriceApplication:61] - Started CatPriceApplication in 1.507 seconds (JVM running for 1.962)
+INFO  22-10-22 22:07:13[http-nio-80-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  22-10-22 22:07:13[http-nio-80-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  22-10-22 22:07:13[http-nio-80-exec-1] [DispatcherServlet:547] - Completed initialization in 0 ms
+INFO  22-10-22 22:07:13[http-nio-80-exec-1] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  22-10-22 22:07:13[http-nio-80-exec-1] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  22-10-22 22:08:57[SpringApplicationShutdownHook] [HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
+INFO  22-10-22 22:08:57[SpringApplicationShutdownHook] [HikariDataSource:352] - HikariPool-1 - Shutdown completed.
+INFO  22-10-22 22:09:00[restartedMain] [CatPriceApplication:55] - Starting CatPriceApplication using Java 17.0.4.1 on mintdt with PID 11292 (E:\Development\TestMarket\MarketPrice_Web\CatPrice\build\classes\java\main started by mintw in E:\Development\TestMarket\MarketPrice_Web\CatPrice)
+INFO  22-10-22 22:09:00[restartedMain] [CatPriceApplication:634] - No active profile set, falling back to 1 default profile: "default"
+INFO  22-10-22 22:09:00[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  22-10-22 22:09:00[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  22-10-22 22:09:01[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 80 (http)
+INFO  22-10-22 22:09:01[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-80"]
+INFO  22-10-22 22:09:01[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  22-10-22 22:09:01[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+INFO  22-10-22 22:09:01[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  22-10-22 22:09:01[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 830 ms
+INFO  22-10-22 22:09:01[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  22-10-22 22:09:01[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-80"]
+INFO  22-10-22 22:09:01[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 80 (http) with context path ''
+INFO  22-10-22 22:09:01[restartedMain] [CatPriceApplication:61] - Started CatPriceApplication in 1.677 seconds (JVM running for 2.19)
+INFO  22-10-22 22:09:06[http-nio-80-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  22-10-22 22:09:06[http-nio-80-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  22-10-22 22:09:06[http-nio-80-exec-1] [DispatcherServlet:547] - Completed initialization in 0 ms
+INFO  22-10-22 22:09:06[http-nio-80-exec-1] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  22-10-22 22:09:07[http-nio-80-exec-1] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  22-10-22 22:11:28[SpringApplicationShutdownHook] [HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
+INFO  22-10-22 22:11:28[SpringApplicationShutdownHook] [HikariDataSource:352] - HikariPool-1 - Shutdown completed.
+INFO  22-10-22 22:11:31[restartedMain] [CatPriceApplication:55] - Starting CatPriceApplication using Java 17.0.4.1 on mintdt with PID 4160 (E:\Development\TestMarket\MarketPrice_Web\CatPrice\build\classes\java\main started by mintw in E:\Development\TestMarket\MarketPrice_Web\CatPrice)
+INFO  22-10-22 22:11:31[restartedMain] [CatPriceApplication:634] - No active profile set, falling back to 1 default profile: "default"
+INFO  22-10-22 22:11:31[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  22-10-22 22:11:31[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  22-10-22 22:11:31[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 80 (http)
+INFO  22-10-22 22:11:31[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-80"]
+INFO  22-10-22 22:11:31[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  22-10-22 22:11:31[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+INFO  22-10-22 22:11:31[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  22-10-22 22:11:31[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 690 ms
+INFO  22-10-22 22:11:32[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  22-10-22 22:11:32[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-80"]
+INFO  22-10-22 22:11:32[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 80 (http) with context path ''
+INFO  22-10-22 22:11:32[restartedMain] [CatPriceApplication:61] - Started CatPriceApplication in 1.477 seconds (JVM running for 2.119)
+INFO  22-10-22 22:11:43[http-nio-80-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  22-10-22 22:11:43[http-nio-80-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  22-10-22 22:11:43[http-nio-80-exec-1] [DispatcherServlet:547] - Completed initialization in 1 ms
+INFO  22-10-22 22:11:43[http-nio-80-exec-1] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  22-10-22 22:11:43[http-nio-80-exec-1] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  22-10-22 22:42:32[SpringApplicationShutdownHook] [HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
+INFO  22-10-22 22:42:32[SpringApplicationShutdownHook] [HikariDataSource:352] - HikariPool-1 - Shutdown completed.
+INFO  22-10-22 22:50:18[restartedMain] [CatPriceApplication:55] - Starting CatPriceApplication using Java 17.0.4.1 on mintdt with PID 22508 (E:\Development\TestMarket\MarketPrice_Web\CatPrice\build\classes\java\main started by mintw in E:\Development\TestMarket\MarketPrice_Web\CatPrice)
+INFO  22-10-22 22:50:18[restartedMain] [CatPriceApplication:634] - No active profile set, falling back to 1 default profile: "default"
+INFO  22-10-22 22:50:18[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  22-10-22 22:50:18[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  22-10-22 22:50:19[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 80 (http)
+INFO  22-10-22 22:50:19[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-80"]
+INFO  22-10-22 22:50:19[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  22-10-22 22:50:19[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+INFO  22-10-22 22:50:19[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  22-10-22 22:50:19[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 803 ms
+INFO  22-10-22 22:50:19[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  22-10-22 22:50:19[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-80"]
+INFO  22-10-22 22:50:20[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 80 (http) with context path ''
+INFO  22-10-22 22:50:20[restartedMain] [CatPriceApplication:61] - Started CatPriceApplication in 1.579 seconds (JVM running for 2.117)
+INFO  22-10-22 22:50:22[http-nio-80-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  22-10-22 22:50:22[http-nio-80-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  22-10-22 22:50:22[http-nio-80-exec-1] [DispatcherServlet:547] - Completed initialization in 1 ms
+INFO  22-10-22 22:50:22[http-nio-80-exec-1] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  22-10-22 22:50:22[http-nio-80-exec-1] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  22-10-22 23:13:16[SpringApplicationShutdownHook] [HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
+INFO  22-10-22 23:13:16[SpringApplicationShutdownHook] [HikariDataSource:352] - HikariPool-1 - Shutdown completed.
+INFO  22-10-22 23:13:22[restartedMain] [CatPriceApplication:55] - Starting CatPriceApplication using Java 17.0.4.1 on mintdt with PID 1584 (E:\Development\TestMarket\MarketPrice_Web\CatPrice\build\classes\java\main started by mintw in E:\Development\TestMarket\MarketPrice_Web\CatPrice)
+INFO  22-10-22 23:13:22[restartedMain] [CatPriceApplication:634] - No active profile set, falling back to 1 default profile: "default"
+INFO  22-10-22 23:13:22[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  22-10-22 23:13:22[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  22-10-22 23:13:23[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 80 (http)
+INFO  22-10-22 23:13:23[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-80"]
+INFO  22-10-22 23:13:23[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  22-10-22 23:13:23[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+INFO  22-10-22 23:13:23[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  22-10-22 23:13:23[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 885 ms
+INFO  22-10-22 23:13:23[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  22-10-22 23:13:23[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-80"]
+INFO  22-10-22 23:13:23[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 80 (http) with context path ''
+INFO  22-10-22 23:13:23[restartedMain] [CatPriceApplication:61] - Started CatPriceApplication in 1.654 seconds (JVM running for 2.203)
+INFO  22-10-22 23:13:25[http-nio-80-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  22-10-22 23:13:25[http-nio-80-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  22-10-22 23:13:25[http-nio-80-exec-1] [DispatcherServlet:547] - Completed initialization in 1 ms
+INFO  22-10-22 23:13:26[http-nio-80-exec-1] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  22-10-22 23:13:26[http-nio-80-exec-1] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  22-10-22 23:13:33[http-nio-80-exec-4] [UserRestController:34] - 고냥이님의 계정으로 세션이 생성되었습니다! -> 로그인
+INFO  22-10-22 23:29:35[SpringApplicationShutdownHook] [HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
+INFO  22-10-22 23:29:35[SpringApplicationShutdownHook] [HikariDataSource:352] - HikariPool-1 - Shutdown completed.
+INFO  22-10-22 23:29:37[restartedMain] [CatPriceApplication:55] - Starting CatPriceApplication using Java 17.0.4.1 on mintdt with PID 4380 (E:\Development\TestMarket\MarketPrice_Web\CatPrice\build\classes\java\main started by mintw in E:\Development\TestMarket\MarketPrice_Web\CatPrice)
+INFO  22-10-22 23:29:37[restartedMain] [CatPriceApplication:634] - No active profile set, falling back to 1 default profile: "default"
+INFO  22-10-22 23:29:37[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  22-10-22 23:29:37[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  22-10-22 23:29:38[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 80 (http)
+INFO  22-10-22 23:29:38[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-80"]
+INFO  22-10-22 23:29:38[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  22-10-22 23:29:38[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+INFO  22-10-22 23:29:38[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  22-10-22 23:29:38[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 785 ms
+INFO  22-10-22 23:29:38[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  22-10-22 23:29:38[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-80"]
+INFO  22-10-22 23:29:38[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 80 (http) with context path ''
+INFO  22-10-22 23:29:38[restartedMain] [CatPriceApplication:61] - Started CatPriceApplication in 1.632 seconds (JVM running for 2.24)
+INFO  22-10-22 23:29:40[http-nio-80-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  22-10-22 23:29:40[http-nio-80-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  22-10-22 23:29:40[http-nio-80-exec-1] [DispatcherServlet:547] - Completed initialization in 1 ms
+INFO  22-10-22 23:29:40[http-nio-80-exec-1] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  22-10-22 23:29:40[http-nio-80-exec-1] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  22-10-22 23:31:08[SpringApplicationShutdownHook] [HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
+INFO  22-10-22 23:31:08[SpringApplicationShutdownHook] [HikariDataSource:352] - HikariPool-1 - Shutdown completed.
+INFO  22-10-22 23:31:10[restartedMain] [CatPriceApplication:55] - Starting CatPriceApplication using Java 17.0.4.1 on mintdt with PID 11272 (E:\Development\TestMarket\MarketPrice_Web\CatPrice\build\classes\java\main started by mintw in E:\Development\TestMarket\MarketPrice_Web\CatPrice)
+INFO  22-10-22 23:31:10[restartedMain] [CatPriceApplication:634] - No active profile set, falling back to 1 default profile: "default"
+INFO  22-10-22 23:31:10[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  22-10-22 23:31:10[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  22-10-22 23:31:11[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 80 (http)
+INFO  22-10-22 23:31:11[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-80"]
+INFO  22-10-22 23:31:11[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  22-10-22 23:31:11[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+INFO  22-10-22 23:31:11[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  22-10-22 23:31:11[restartedMain] [ServletWebServerApplicationContext:292] - Root WebApplicationContext: initialization completed in 707 ms
+INFO  22-10-22 23:31:11[restartedMain] [OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  22-10-22 23:31:11[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-80"]
+INFO  22-10-22 23:31:11[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 80 (http) with context path ''
+INFO  22-10-22 23:31:11[restartedMain] [CatPriceApplication:61] - Started CatPriceApplication in 1.582 seconds (JVM running for 2.242)
+INFO  22-10-22 23:31:11[http-nio-80-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  22-10-22 23:31:11[http-nio-80-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  22-10-22 23:31:11[http-nio-80-exec-1] [DispatcherServlet:547] - Completed initialization in 1 ms
+INFO  22-10-22 23:31:11[http-nio-80-exec-1] [HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  22-10-22 23:31:12[http-nio-80-exec-1] [HikariDataSource:123] - HikariPool-1 - Start completed.
+INFO  22-10-22 23:32:03[SpringApplicationShutdownHook] [HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
+INFO  22-10-22 23:32:03[SpringApplicationShutdownHook] [HikariDataSource:352] - HikariPool-1 - Shutdown completed.

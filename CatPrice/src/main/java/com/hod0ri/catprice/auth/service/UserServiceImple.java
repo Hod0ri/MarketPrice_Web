@@ -35,4 +35,9 @@ public class UserServiceImple implements UserService{
     public List<UserVO> getAllUser() {
         return mapper.getAllUser();
     }
+
+    @Override
+    public UserVO getUserInfo(String userId) {
+        return mapper.getUserInfo(userId);
+    }
 }

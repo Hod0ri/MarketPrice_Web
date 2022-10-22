@@ -16,4 +16,6 @@ public interface UserMapper {
     List<UserVO> getAllAdmin();
 
     List<UserVO> getAllUser();
+
+    UserVO getUserInfo(String userId);
 }

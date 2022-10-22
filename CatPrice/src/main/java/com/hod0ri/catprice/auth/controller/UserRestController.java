@@ -1,6 +1,7 @@
 package com.hod0ri.catprice.auth.controller;
 
 import com.hod0ri.catprice.auth.service.UserService;
+import com.hod0ri.catprice.auth.vo.UserVO;
 import com.hod0ri.catprice.security.SHA256;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,14 @@ public class UserRestController {
 
         if(userService.findId(user_id)) {
             String realPassword = userService.getpassword(user_id);
+            UserVO user = userService.getUserInfo(user_id);
             if(cryptogram.equals(realPassword)) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user_id", user_id);
-                log.info(user_id + " 계정으로 세션이 생성되었습니다! -> 로그인");
+                log.info(user.getUser_name() + "님의 계정으로 세션이 생성되었습니다! -> 로그인");
                 return "successful";
             } else {
-                log.info(user_id + " 계정으로 로그인 시도가 있었으나 실패했습니다! -> 로그인 실패");
+                log.info(user.getUser_name() + "님의 계정으로 로그인 시도가 있었으나 실패했습니다! -> 로그인 실패");
                 return "authexception";
             }
         } else {
@@ -46,7 +48,8 @@ public class UserRestController {
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String user_id = (String) session.getAttribute("user_id");
-        log.info(user_id + " 계정의 세션이 해제되었습니다! -> 로그아웃");
+        UserVO user = userService.getUserInfo(user_id);
+        log.info(user.getUser_name() + "님의 계정의 세션이 해제되었습니다! -> 로그아웃");
         session.removeAttribute("user_id");
         session.invalidate();
         return "successful";

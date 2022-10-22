@@ -18,6 +18,10 @@
         select exists (select * from public."TB_USER" where user_id=#{user_id})
     </select>
 
+    <select id="getUserInfo" resultType="com.hod0ri.catprice.auth.vo.UserVO">
+        select * from public."TB_USER" where user_id=#{user_id}
+    </select>
+
     <select id="getpassword" resultType="string">
         SELECT user_password
         FROM public."TB_USER" where user_id=#{user_id};
